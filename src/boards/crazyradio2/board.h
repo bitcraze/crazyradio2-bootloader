@@ -60,4 +60,6 @@
 #define UF2_BOARD_ID        "bitcraze-crazyradio2-revE"
 #define UF2_INDEX_URL       "https://www.bitcraze.io/bootloader/crazyradio20/start/"
 
+#define UF2_VOLUME_LABEL   "Crazyradio2"
+
 #endif // CRAZYRADIO2_H
