@@ -123,7 +123,7 @@ char infoUf2File[128*3] =
     "Board-ID: " UF2_BOARD_ID "\r\n"
     "Date: " __DATE__ "\r\n";
 
-const char indexFile[] =
+const char readmeHtmlFile[] =
     "<!doctype html>\n"
     "<html>"
     "<body>"
@@ -133,15 +133,22 @@ const char indexFile[] =
     "</body>"
     "</html>\n";
 
+const char readmeTxtFile[] =
+    "This is a UF2 Bootloader for " UF2_PRODUCT_NAME ".\r\n"
+    "This bootloader allows to upgrade the firmware by simply dragging and dropping a UF2 file to this disk.\r\n"
+    "For more info please visit " UF2_INDEX_URL "\r\n";
+
 static struct TextFile const info[] = {
     {.name = "INFO_UF2TXT", .content = infoUf2File},
-    {.name = "INDEX   HTM", .content = indexFile},
+    {.name = "README  HTM", .content = readmeHtmlFile},
+    {.name = "README  TXT", .content = readmeTxtFile},
 
     // current.uf2 must be the last element and its content must be NULL
     {.name = "CURRENT UF2", .content = NULL},
 };
 STATIC_ASSERT(ARRAY_SIZE(infoUf2File) < BPB_SECTOR_SIZE); // GhostFAT requires files to fit in one sector
-STATIC_ASSERT(ARRAY_SIZE(indexFile)   < BPB_SECTOR_SIZE); // GhostFAT requires files to fit in one sector
+STATIC_ASSERT(ARRAY_SIZE(readmeHtmlFile)   < BPB_SECTOR_SIZE); // GhostFAT requires files to fit in one sector
+STATIC_ASSERT(ARRAY_SIZE(readmeTxtFile)   < BPB_SECTOR_SIZE); // GhostFAT requires files to fit in one sector
 
 #define NUM_FILES          (ARRAY_SIZE(info))
 #define NUM_DIRENTRIES     (NUM_FILES + 1) // Code adds volume label as first root directory entry
